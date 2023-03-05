@@ -1,0 +1,15 @@
+
+**/build
+**/dist
+**/*.egg-info
+**/docs
+**/htmlcov
+**/.coverage
+**/.pytest_cache
+**/.mypy_cache
+**/__pycache__
+**/*.pyc
+.vscode/
+*.db
+./vscode/
+.git

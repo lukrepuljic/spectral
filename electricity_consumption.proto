@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service ElectricityConsumption {
+    rpc GetElectricityConsumption(Request) returns (stream ConsumptionPoint) {}
+}
+
+message Request {
+    string id = 1;
+}
+
+message ConsumptionPoint {
+    string time = 1;
+    float measurement = 2;
+}

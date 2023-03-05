@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Electricity Consumption</title>
+    <style>
+      #table-container {
+        height: 300px;
+        overflow: auto;
+      }
+
+      #table-wrapper {
+        width: 30%;
+        float: left;
+        margin-right: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+      }
+
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #ddd;
+        position: sticky;
+        top: 0;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      button {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Electricity Consumption</h1>
+    <button onclick="getData()">Get Data</button>
+    <div id="table-wrapper">
+      <div id="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      function getData() {
+        fetch('/measurements')
+          .then(response => response.json())
+          .then(data => {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            for (const measurement of data) {
+              const tr = document.createElement('tr');
+              const tdTime = document.createElement('td');
+              tdTime.textContent = measurement.time;
+              tr.appendChild(tdTime);
+              const tdValue = document.createElement('td');
+              tdValue.textContent = measurement.value;
+              tr.appendChild(tdValue);
+              tbody.appendChild(tr);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }
+    </script>
+  </body>
+</html>

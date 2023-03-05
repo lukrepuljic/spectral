@@ -1,0 +1,6 @@
+fastapi==0.92.0
+grpcio==1.52.0
+grpcio-tools==1.52.0
+httpx==0.23.3
+Jinja2==3.1.2
+uvicorn==0.20.0
